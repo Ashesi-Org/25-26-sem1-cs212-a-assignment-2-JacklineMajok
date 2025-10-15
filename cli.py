@@ -18,6 +18,7 @@ def display_welcome():
     print("Python fundamentals: variables, expressions,")
     print("statements, and functions.")
     # TODO: Add a blank line after the welcome message
+    print()
 
 
 def get_user_choice():
@@ -31,6 +32,7 @@ def get_user_choice():
 
     choice = input("Enter your choice (help/calc/info/quit): ").strip().lower()
     # TODO: Add code to return the choice
+    return choice
 
 
 def display_help():
@@ -78,10 +80,10 @@ def display_info():
 def process_user_command(
     choice,
     running,
-    show_goodbye,
-    goodbye_message,
-    invalid_choice_prefix,
-    valid_commands,
+    show_goodbye=True,
+    goodbye_message="Thank you for using python CLI File Manager!",
+    invalid_choice_prefix="Invalid choice",
+    valid_commands="help,calc,info,quit",
 ):
     """
     Process a user command and return the updated running state.
@@ -131,7 +133,12 @@ def main():
 
             # Use the extracted function to process the command
             # This demonstrates calling a function with keyword arguments
-            running = process_user_command(choice, running)
+            running = process_user_command(choice,
+                                           running,
+                show_goodbye=True,
+                goodbye_message="Thank you for using Python CLI File Manager!",
+                invalid_choice_prefix="Invalid choice:",
+                valid_commands="help, calc, info, quit")
 
         except KeyboardInterrupt:
             print("\n\nProgram interrupted by user.")
